@@ -46,7 +46,11 @@ const pathname_part: string = pathname.split("/")[1];
           <a href={item.href}>
             <Button
               variant="link"
-              className=`${"/" + pathname_part === "/" + item.href.split("/")[1] ? "underline" : ""} text-foreground`
+              className={`${
+                "/" + pathname_part === "/" + item.href.split("/")[1]
+                  ? "underline"
+                  : ""
+              } text-foreground`}
               key={item.href}
             >
               {item.title}

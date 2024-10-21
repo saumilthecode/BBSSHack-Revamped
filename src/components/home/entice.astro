@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import zennethmotivational from '/src/assets/img/zennethmotivational.webp';
+---
+
+<div class="flex flex-col md:flex-row items-center justify-center w-full max-w-4xl mx-auto pb-16 px-4 md:px-0">
+  <div class="flex-shrink-0 mb-6 md:mb-0 md:mr-8">
+    <Image 
+      src={zennethmotivational} 
+      alt="Motivational image" 
+      width={320} 
+      height={320} 
+      class="w-full md:w-auto"
+    />
+  </div>
+  <div class="flex-grow">
+    <p class="text-base md:text-lg text-[#cbd4f5] space-y-2 text-center md:text-left">
+      Ever wanted to make a <a href="https://hackclub.com/onboard/" class="text-[#00ff29]">PCB</a>?
+      <br />
+      What about a <a href="https://sprig.hackclub.com/" class="text-[#00ffb3]">game</a>?
+      <br />
+      What about a <a href="https://saumilthecode.github.io/dancefloor/" class="text-[#f2ed6d]">3D website</a>?
+      <br />
+      <br />
+      I could keep this list going but you get what I'm talking about.
+      <br />
+      Ever wanted to make something with Tech but never knew how to?
+      <br />
+      With BBSS Hack Club we <strong>will</strong> give you the resources, time and (<em>possibly</em>) funding to work on your projects
+      <br />
+      <br />
+      <a href="/projects" class="font-bold hover:underline transition-all duration-300 inline-block mt-4 text-lg">
+        🚀 <i class="text-primary">Explore Our Exciting Projects!</i>
+      </a>
+    </p>
+  </div>
+</div>

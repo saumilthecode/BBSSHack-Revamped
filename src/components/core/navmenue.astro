@@ -1,0 +1,144 @@
+---
+import { Button } from "@/components/ui/button";
+import { MenuIcon, X } from "lucide-react";
+import { SITE } from "@/config";
+---
+
+<style>
+  .menu-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgb(255, 255, 255);
+    z-index: 9999;
+    overflow-y: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .menu-overlay {
+      background-color: rgb(9, 9, 11);
+    }
+  }
+
+  .menu-overlay.active {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+  }
+
+  .menu-content {
+    padding: 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 10000;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10001;
+  }
+
+  .menu-item {
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem;
+    position: relative;
+    z-index: 10000;
+    list-style: none;
+  }
+
+  #menu-toggle {
+    position: relative;
+    z-index: 9998;
+  }
+
+  .menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .menu-content {
+      justify-content: flex-start;
+      padding-top: 4rem;
+    }
+  }
+</style>
+
+<div id="menu-toggle">
+  <Button variant="ghost" size="icon" client:load aria-label="Toggle menu">
+    <MenuIcon className="h-[1.2rem] w-[1.2rem]" />
+  </Button>
+</div>
+
+<div class="menu-overlay" role="dialog" aria-modal="true">
+  <div class="close-button">
+    <Button variant="ghost" size="icon" client:load id="close-menu" aria-label="Close menu">
+      <X className="h-[1.2rem] w-[1.2rem]" />
+    </Button>
+  </div>
+  <nav class="menu-content">
+    <ul class="menu-list flex flex-col items-center space-y-6 text-xl w-full">
+      <li class="menu-item">
+        <a href="/">
+          <Button client:load variant="link" size="lg" className="w-full">Home</Button>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="/projects">
+          <Button client:load variant="link" size="lg" className="w-full">Projects</Button>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="/competition">
+          <Button client:load variant="link" size="lg" className="w-full">Competition</Button>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="/our-people">
+          <Button client:load variant="link" size="lg" className="w-full">Our People</Button>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="/join-us">
+          <Button client:load variant="default" size="lg" className="w-full">Join Us</Button>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<script>
+  function toggleMenu() {
+    const menuOverlay = document.querySelector('.menu-overlay');
+    if (menuOverlay) {
+      menuOverlay.classList.toggle('active');
+      document.body.style.overflow = menuOverlay.classList.contains('active') ? 'hidden' : '';
+    }
+  }
+
+  document.getElementById('menu-toggle')?.addEventListener('click', toggleMenu);
+  document.getElementById('close-menu')?.addEventListener('click', toggleMenu);
+
+  document.querySelectorAll('.menu-overlay a').forEach(link => {
+    link.addEventListener('click', toggleMenu);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const menuOverlay = document.querySelector('.menu-overlay');
+      if (menuOverlay?.classList.contains('active')) {
+        toggleMenu();
+      }
+    }
+  });
+</script>
