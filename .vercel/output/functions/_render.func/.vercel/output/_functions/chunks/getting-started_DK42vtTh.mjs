@@ -1,5 +1,5 @@
 async function getMod() {
-						return import('./frontmatter-ref_CRRAO06J.mjs');
+						return import('./getting-started_JK4pkfmC.mjs');
 					}
 					const collectedLinks = [];
 					const collectedStyles = [];

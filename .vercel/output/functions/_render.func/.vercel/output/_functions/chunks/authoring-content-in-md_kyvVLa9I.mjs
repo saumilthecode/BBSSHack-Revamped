@@ -1,5 +1,5 @@
 async function getMod() {
-						return import('./authoring-content-in-md_ojvwd2L8.mjs');
+						return import('./authoring-content-in-md_DpRXmHu9.mjs');
 					}
 					const collectedLinks = [];
 					const collectedStyles = [];

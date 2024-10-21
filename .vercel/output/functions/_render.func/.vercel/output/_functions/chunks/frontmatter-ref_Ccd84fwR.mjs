@@ -93,35 +93,59 @@ function _createMdxContent(props) {
           class: "line",
           children: createVNode(_components.span, {
             style: {
-              color: "#179299",
-              "--shiki-dark": "#8BD5CA"
+              color: "#7C7F93",
+              "--shiki-dark": "#939AB7"
             },
             children: "---"
           })
         }), "\n", createVNode(_components.span, {
           class: "line",
-          children: createVNode(_components.span, {
+          children: [createVNode(_components.span, {
             style: {
-              color: "#4C4F69",
-              "--shiki-dark": "#CAD3F5"
+              color: "#1E66F5",
+              "--shiki-dark": "#8AADF4"
             },
-            children: "title: Sample"
-          })
+            children: "title"
+          }), createVNode(_components.span, {
+            style: {
+              color: "#179299",
+              "--shiki-dark": "#8BD5CA"
+            },
+            children: ":"
+          }), createVNode(_components.span, {
+            style: {
+              color: "#40A02B",
+              "--shiki-dark": "#A6DA95"
+            },
+            children: " Sample"
+          })]
+        }), "\n", createVNode(_components.span, {
+          class: "line",
+          children: [createVNode(_components.span, {
+            style: {
+              color: "#1E66F5",
+              "--shiki-dark": "#8AADF4"
+            },
+            children: "description"
+          }), createVNode(_components.span, {
+            style: {
+              color: "#179299",
+              "--shiki-dark": "#8BD5CA"
+            },
+            children: ":"
+          }), createVNode(_components.span, {
+            style: {
+              color: "#40A02B",
+              "--shiki-dark": "#A6DA95"
+            },
+            children: " Sample description"
+          })]
         }), "\n", createVNode(_components.span, {
           class: "line",
           children: createVNode(_components.span, {
             style: {
-              color: "#4C4F69",
-              "--shiki-dark": "#CAD3F5"
-            },
-            children: "description: Sample description"
-          })
-        }), "\n", createVNode(_components.span, {
-          class: "line",
-          children: createVNode(_components.span, {
-            style: {
-              color: "#FE640B",
-              "--shiki-dark": "#F5A97F"
+              color: "#7C7F93",
+              "--shiki-dark": "#939AB7"
             },
             children: "---"
           })
