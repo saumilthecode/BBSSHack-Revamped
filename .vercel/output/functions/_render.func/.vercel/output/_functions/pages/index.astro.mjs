@@ -1,7 +1,7 @@
 import { c as createAstro, a as createComponent, r as renderTemplate, m as maybeRenderHead, b as addAttribute, d as renderComponent } from '../chunks/astro/server_DyQOWlKk.mjs';
-import { $ as $$BaseLayout } from '../chunks/BaseLayout_C6TJjYtZ.mjs';
+import { $ as $$BaseLayout } from '../chunks/BaseLayout_CNfmwfF3.mjs';
 import { $ as $$Image } from '../chunks/_astro_assets_D07zSGO7.mjs';
-import { B as Button } from '../chunks/Footer_Cg9xIOBF.mjs';
+import { B as Button } from '../chunks/Footer_CPb6o6Yt.mjs';
 import { K as KittyAstronaut } from '../chunks/logo_Da9e7QRB.mjs';
 /* empty css                                 */
 import 'clsx';

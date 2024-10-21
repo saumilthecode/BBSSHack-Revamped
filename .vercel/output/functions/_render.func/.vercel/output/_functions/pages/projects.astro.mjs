@@ -1,5 +1,5 @@
 import { c as createAstro, a as createComponent, r as renderTemplate, m as maybeRenderHead, d as renderComponent, b as addAttribute } from '../chunks/astro/server_DyQOWlKk.mjs';
-import { $ as $$BaseLayout } from '../chunks/BaseLayout_C6TJjYtZ.mjs';
+import { $ as $$BaseLayout } from '../chunks/BaseLayout_CNfmwfF3.mjs';
 import { jsx } from 'react/jsx-runtime';
 import { Swiper, SwiperSlide } from 'swiper/react';
 /* empty css                                    */

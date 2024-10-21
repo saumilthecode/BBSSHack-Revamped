@@ -1,5 +1,5 @@
 import { a as createComponent, r as renderTemplate, d as renderComponent } from '../chunks/astro/server_DyQOWlKk.mjs';
-import { $ as $$BaseLayout } from '../chunks/BaseLayout_C6TJjYtZ.mjs';
+import { $ as $$BaseLayout } from '../chunks/BaseLayout_CNfmwfF3.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Competition = createComponent(($$result, $$props, $$slots) => {
