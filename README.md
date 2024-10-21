@@ -1,3 +1,11 @@
+Attempt at fixing up http://bbsshack.club/ and move into Astro since plain html and css can only go so far
+
+
+
+
+
+
+
 <h1 align="center">CelestialDocs</h1>
 
 <p align="center">
