@@ -8,6 +8,10 @@ import vercel from '@astrojs/vercel/serverless';
 // https://astro.build/config
 export default defineConfig({
   site: "https://celestial.hyperoot.dev",
+  output: 'server',
+  adapter: vercel({
+      webAnalytics: { enabled: true }
+    }),
   markdown: {
     smartypants: true,
     syntaxHighlight: "shiki",
@@ -37,8 +41,4 @@ export default defineConfig({
       gfm: true,
     }),
   ],
-  output: 'server',
-  adapter: vercel({
-    webAnalytics: { enabled: true }
-  }),
 });
