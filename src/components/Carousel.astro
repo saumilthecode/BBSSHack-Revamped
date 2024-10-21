@@ -7,7 +7,7 @@ interface CarouselProps {
   images: string[]; // Array of image URLs
 }
 
-const { images } = Astro.props;
+const { images } = Astro.props as CarouselProps; // Cast Astro props to the defined interface
 ---
 
 <Swiper
@@ -18,8 +18,8 @@ const { images } = Astro.props;
   autoplay={{ delay: 5000 }} // Optional auto-play
   class="mySwiper"
 >
-  {images.map((imageUrl) => (
-    <SwiperSlide>
+  {images.map((imageUrl: string, index: number) => (
+    <SwiperSlide key={index}> <!-- Unique key for each slide -->
       <img src={imageUrl} alt="Project image" class="carousel-image" />
     </SwiperSlide>
   ))}
