@@ -1,7 +1,7 @@
 Attempt at fixing up http://bbsshack.club/ and move into Astro since plain html and css can only go so far
 
 
-
+https://saumilthecode.github.io/BBSSHack-Revamped/ should work :p
 
 
 
