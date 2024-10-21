@@ -1,0 +1,35 @@
+---
+import { Swiper, SwiperSlide } from 'swiper/astro';
+import 'swiper/css'; // Basic Swiper styles
+import 'swiper/css/pagination'; // Pagination styles if you want to add them
+
+interface CarouselProps {
+  images: string[]; // Array of image URLs
+}
+
+const { images } = Astro.props;
+---
+
+<Swiper
+  spaceBetween={20}
+  slidesPerView={1}
+  pagination={{ clickable: true }}
+  loop={true} // Enable loop for continuous sliding
+  autoplay={{ delay: 5000 }} // Optional auto-play
+  class="mySwiper"
+>
+  {images.map((imageUrl) => (
+    <SwiperSlide>
+      <img src={imageUrl} alt="Project image" class="carousel-image" />
+    </SwiperSlide>
+  ))}
+</Swiper>
+
+<style>
+  .carousel-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.5rem; /* Optional border radius */
+  }
+</style>

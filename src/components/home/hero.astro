@@ -1,7 +1,7 @@
 ---
 const { class: className } = Astro.props;
 import { Image } from "astro:assets";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"; // Make sure this import is correct
 import KittyAstronaut from "/public/logo.webp";
 ---
 
@@ -18,11 +18,18 @@ import KittyAstronaut from "/public/logo.webp";
       <h1
         class="text-pretty text-center md:text-left md:text-4xl lg:text-5xl tracking-wide"
       >
-        BBSS  <i class="text-primary">Hack Club</i> 
+        BBSS <i class="text-primary">Hack Club</i>
       </h1>
       <p class="text-center md:text-left text-lg md:text-2xl">
         Take an idea you're interested in and bring it to Life
       </p>
+      <!-- Wrap the Button in an anchor tag to create the link -->
+      <a class="mt-4" href="#calltoaction">
+        <Button>
+          What?
+          <span class="hand-drawn-arrow animate-bounce"></span> <!-- Hand-drawn arrow added inside the button -->
+        </Button>
+      </a>
     </div>
     <div class="hidden md:flex w-1/2 justify-center align-middle">
       <Image src={KittyAstronaut} alt="404" />
@@ -30,4 +37,29 @@ import KittyAstronaut from "/public/logo.webp";
   </div>
 </div>
 
-<style></style>
+<style>
+  .animate-bounce {
+    animation: bounce 1s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .hand-drawn-arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 10px solid black; /* Change color as needed */
+    margin-left: 8px; /* Space between text and arrow */
+    transform: rotate(90deg); /* Rotate to point down */
+    vertical-align: middle; /* Align with text */
+  }
+</style>

@@ -1,0 +1,55 @@
+---
+import SwiperCarousel from './SwiperCarousel.jsx'; // Import the JavaScript Swiper component
+import { Fragment } from 'preact/compat'; // Import Fragment for key assignment
+
+interface Item {
+  id: string;
+  title: string;
+  imageUrl: string | string[]; // Support multiple images
+  description?: string;
+  cornerRadius?: string;
+}
+
+interface Props {
+  items: Item[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="grid-container">
+  {
+    items.map((item) => (
+      <Fragment key={item.id}>  
+        <div class="grid-item">
+          {Array.isArray(item.imageUrl) ? (
+            <SwiperCarousel images={item.imageUrl} />
+          ) : (
+            <img 
+              src={item.imageUrl} 
+              alt={item.title} 
+              class="grid-image"
+              style={`object-fit: contain; width: 80%; height: auto; border-radius: ${item.cornerRadius || '0.5rem'};`}
+            />
+          )}
+          <h3 class="grid-title">{item.title}</h3>
+          {item.description && <p class="grid-description">{item.description}</p>}
+        </div>
+      </Fragment>
+    ))}
+</div>
+
+<style>
+  .grid-container {
+    display: grid; /* Ensure grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between grid items */
+  }
+  .carousel-image {
+    width: 100%; /* Adjusted width to 100% for better responsiveness */
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.5rem;
+  }
+</style>
+

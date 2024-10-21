@@ -1,0 +1,19 @@
+---
+import GridView from 'src/components/GridView.astro';
+
+const items = [
+  { id: "1", title: "Grass", imageUrl: "src/assets/img/grass.jpg", description: "Created by Saumil in 2022 under the Swift Accelerator Programme, Grass is a application that aims to help forgetful plant owners who oftentimes want to have a plant but cant seem to sustain one for the life of them (and the life of the plant)  :) Grass helps you (yes you forgetful plant owner) to water and fertilize your plant through frequent notifications.\nYou can check it out at https://app.swiftinsg.org/grass!", cornerRadius: "22px" },
+  { id: "2", title: "Journify", imageUrl: "src/assets/img/Journify.png", description: "Created by Daivik in 2023 under the Swift Accelerator Programme, Journify is a application that allows you to set up a itinerary to keep your travels organized! You can check it out at https://app.swiftinsg.org/journify!.", cornerRadius: "22px" },
+  { id: "3", title: "About BBSS!", imageUrl: ["src/assets/img/screenshot1.webp", "src/assets/img/screenshot2.webp", "src/assets/img/screenshot3.webp", "src/assets/img/screenshot4.webp", "src/assets/img/screenshot5.webp"], description: "During the Swift Explorers Programme 2024 Saumil, Daivik and Zenneth made 'About BBSS' as a supliment to our existing school outreach schemes! Check it out at https://github.com/saumilthecode/propoganda!." },
+  { id: "4", title: "Recycler", imageUrl: ["src/assets/img/recycler1.webp", "src/assets/img/recycler2.webp", "src/assets/img/recycler3.webp", "src/assets/img/recycler4.webp", "src/assets/img/recycler5.webp"], description: "Recycler is a simple project that allows you to recycle your own items." },
+  { id: "5", title: "Rain and Trees", imageUrl: "src/assets/img/clipboard-image-2.png", description: "Daivik made this 3D website as part of <a href='https://fraps.hackclub.com/'>Fraps</a>. Check it out at https://gz56.github.io/glitch/." },
+];
+
+---
+<h1
+class="text-pretty text-center md:text-left md:text-4xl lg:text-5xl tracking-wide"
+>
+Projects made for an impact <i class="text-primary">for an impact</i> 
+</h1>
+
+<GridView items={items} />
