@@ -1,5 +1,5 @@
 import { c as createAstro, a as createComponent, r as renderTemplate, m as maybeRenderHead, b as addAttribute, d as renderComponent, f as renderSlot, e as renderHead } from '../chunks/astro/server_DyQOWlKk.mjs';
-import { c as capitalizeFirstLetter, e as createHeadingHierarchy, L as LOCALE, d as cn, f as buildBreadcrumbs, B as Button, g as docconfig, S as SITE, $ as $$HeadSEO, a as $$Header, m as menu, b as $$Footer, h as getCollection } from '../chunks/Footer_Da7bObhW.mjs';
+import { c as capitalizeFirstLetter, e as createHeadingHierarchy, L as LOCALE, d as cn, f as buildBreadcrumbs, B as Button, g as docconfig, S as SITE, $ as $$HeadSEO, a as $$Header, m as menu, b as $$Footer, h as getCollection } from '../chunks/Footer_BxW2Foy4.mjs';
 import 'clsx';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
 import { Calendar, ChevronUpIcon } from 'lucide-react';
