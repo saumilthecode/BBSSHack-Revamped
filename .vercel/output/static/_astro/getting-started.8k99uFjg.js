@@ -1,7 +1,0 @@
-<<<<<<<< HEAD:.vercel/output/static/_astro/getting-started.8k99uFjg.js
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["_astro/getting-started.DAe-7kkr.js","_astro/_astro_assets.Cm3KlLAp.js","_astro/utils.D16_8zTf.js","_astro/index.CVpbhN_F.js","_astro/astro/assets-service.B8jKZLxS.js","_astro/Callout.CjqM-UnH.js","_astro/button.C35LZAN5.js","_astro/createLucideIcon.p0hNPnRc.js"])))=>i.map(i=>d[i]);
-import{_ as t}from"./astro/assets-service.B8jKZLxS.js";async function o(){return t(()=>import("./getting-started.DAe-7kkr.js"),__vite__mapDeps([0,1,2,3,4,5,6,7]))}const e="@@ASTRO-LINKS@@",c="@@ASTRO-STYLES@@",r="@@ASTRO-SCRIPTS@@",l={__astroPropagation:!0,getMod:o,collectedLinks:e,collectedStyles:c,collectedScripts:r};export{l as default};
-========
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["_astro/getting-started.SpQ501bk.js","_astro/_astro_assets.X6uH4Vjl.js","_astro/utils.Dfi6O6SH.js","_astro/index.CVpbhN_F.js","_astro/astro/assets-service.B8jKZLxS.js","_astro/Callout.CKOf0gAM.js","_astro/button.C19GCAOU.js","_astro/createLucideIcon.p0hNPnRc.js"])))=>i.map(i=>d[i]);
-import{_ as t}from"./astro/assets-service.B8jKZLxS.js";async function o(){return t(()=>import("./getting-started.SpQ501bk.js"),__vite__mapDeps([0,1,2,3,4,5,6,7]))}const e="@@ASTRO-LINKS@@",c="@@ASTRO-STYLES@@",r="@@ASTRO-SCRIPTS@@",l={__astroPropagation:!0,getMod:o,collectedLinks:e,collectedStyles:c,collectedScripts:r};export{l as default};
->>>>>>>> origin/main:.vercel/output/static/_astro/getting-started.RzzhQpxR.js

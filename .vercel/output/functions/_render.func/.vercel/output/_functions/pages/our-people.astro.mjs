@@ -1,9 +1,6 @@
-import { a as createComponent, r as renderTemplate, d as renderComponent } from '../chunks/astro/server_DyQOWlKk.mjs';
-<<<<<<< HEAD
-import { $ as $$BaseLayout } from '../chunks/BaseLayout_CNfmwfF3.mjs';
-=======
-import { $ as $$BaseLayout } from '../chunks/BaseLayout_CAI9o3vV.mjs';
->>>>>>> origin/main
+import { a as createComponent, r as renderTemplate, d as renderComponent } from '../chunks/astro/server_B4TpmAlj.mjs';
+import 'kleur/colors';
+import { $ as $$BaseLayout } from '../chunks/BaseLayout_BdiLZMSC.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$OurPeople = createComponent(($$result, $$props, $$slots) => {

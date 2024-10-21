@@ -1,7 +1,7 @@
 import React__default, { createElement } from 'react';
 import ReactDOM from 'react-dom/server';
 import { g as AstroUserError, A as AstroError } from './chunks/astro/assets-service_DbSabjp0.mjs';
-import { A as AstroJSX, i as renderJSX, g as createVNode } from './chunks/astro/server_DyQOWlKk.mjs';
+import { A as AstroJSX, i as renderJSX, g as createVNode } from './chunks/astro/server_B4TpmAlj.mjs';
 
 const opts = {
 						experimentalReactChildren: false
@@ -131,7 +131,7 @@ async function renderToStaticMarkup$1(Component, props, { default: children, ...
 	const newChildren = children ?? props.children;
 	if (children && opts.experimentalReactChildren) {
 		attrs['data-react-children'] = true;
-		const convert = await import('./chunks/vnode-children_C1YIWAGb.mjs').then((mod) => mod.default);
+		const convert = await import('./chunks/vnode-children_BkR_XoPb.mjs').then((mod) => mod.default);
 		newProps.children = convert(children);
 	} else if (newChildren != null) {
 		newProps.children = React__default.createElement(StaticHtml, {

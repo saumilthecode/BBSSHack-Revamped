@@ -1,9 +1,6 @@
-import { c as createAstro, a as createComponent, r as renderTemplate, m as maybeRenderHead, d as renderComponent, b as addAttribute } from '../chunks/astro/server_DyQOWlKk.mjs';
-<<<<<<< HEAD
-import { $ as $$BaseLayout } from '../chunks/BaseLayout_CNfmwfF3.mjs';
-=======
-import { $ as $$BaseLayout } from '../chunks/BaseLayout_CAI9o3vV.mjs';
->>>>>>> origin/main
+import { c as createAstro, a as createComponent, r as renderTemplate, m as maybeRenderHead, d as renderComponent, b as addAttribute } from '../chunks/astro/server_B4TpmAlj.mjs';
+import 'kleur/colors';
+import { $ as $$BaseLayout } from '../chunks/BaseLayout_BdiLZMSC.mjs';
 import { jsx } from 'react/jsx-runtime';
 import { Swiper, SwiperSlide } from 'swiper/react';
 /* empty css                                    */
