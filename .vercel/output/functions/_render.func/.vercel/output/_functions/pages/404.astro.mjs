@@ -1,6 +1,6 @@
 import { c as createAstro, a as createComponent, r as renderTemplate, d as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_DyQOWlKk.mjs';
 import { $ as $$Image } from '../chunks/_astro_assets_D07zSGO7.mjs';
-import { $ as $$BaseLayout } from '../chunks/BaseLayout_CAGoNJn7.mjs';
+import { $ as $$BaseLayout } from '../chunks/BaseLayout_Bqv0R2Wu.mjs';
 import { K as KittyAstronaut } from '../chunks/logo_Da9e7QRB.mjs';
 export { renderers } from '../renderers.mjs';
 

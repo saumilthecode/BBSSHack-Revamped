@@ -1,5 +1,5 @@
 import { a as createComponent, r as renderTemplate, d as renderComponent } from '../chunks/astro/server_DyQOWlKk.mjs';
-import { $ as $$BaseLayout } from '../chunks/BaseLayout_CAGoNJn7.mjs';
+import { $ as $$BaseLayout } from '../chunks/BaseLayout_Bqv0R2Wu.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$OurPeople = createComponent(($$result, $$props, $$slots) => {
