@@ -5,7 +5,7 @@ import NavMenu from "@/components/core/NavMenu.astro";
 import { Search } from "@/components/core/Search";
 import { Button } from "@/components/ui/button";
 import { docconfig, SITE } from "@/config";
-import { Github } from "lucide-react";
+import { GithubIcon } from "lucide-react"; // Ensure this import is correct
 
 const { class: className } = Astro.props;
 ---
@@ -60,7 +60,7 @@ const { class: className } = Astro.props;
         !docconfig.hide_repo_button && (
           <a href={SITE.repo} target="_blank" class="hidden sm:inline-block">
             <Button client:load variant="ghost" size="icon" className="p-1 sm:p-2">
-              <Github className="w-4 h-4 sm:w-5 sm:h-5" />
+              <GithubIcon className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" /> 
             </Button>
           </a>
         )

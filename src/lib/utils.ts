@@ -12,21 +12,20 @@ import type {
 
 import { side_nav_menu_order } from "@/config";
 
-// for shadcn components
+// Utility function for class names
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// Fetch the collection with type
+// Fetch the collection of documents
 const docs: DocsEntry[] = await getCollection("docs");
 
-// Helper function to capitalize the first letter of a string
+// Capitalize the first letter of a string
 export const capitalizeFirstLetter = (str: string) => {
-  if (!str) return str;
-  return str.charAt(0).toUpperCase() + str.slice(1);
+  return str ? str.charAt(0).toUpperCase() + str.slice(1) : str;
 };
 
-// Helper function to sort items according to side_nav_menu_order
+// Sort items based on the provided order map
 function sortItems(
   items: MenuItemWithDraft[],
   orderMap: Map<string, number>,
@@ -38,35 +37,24 @@ function sortItems(
   });
 }
 
-// Function to build nested menu structure
+// Build a nested menu structure
 function buildMenu(items: DocsEntry[]): MenuItem[] {
   const menu: MenuItemWithDraft[] = [];
+  const orderMap = new Map(side_nav_menu_order.map((item, index) => [item, index]));
 
-  // Create a map to quickly look up the order of all items
-  const orderMap = new Map(
-    side_nav_menu_order.map((item, index) => [item, index]),
-  );
-
-  // Helper function to sort top-level items
+  // Sort top-level and nested items
   function sortTopLevel(items: MenuItemWithDraft[]): MenuItemWithDraft[] {
-    const topLevelItems = items.filter((item) => !item.slug.includes("/"));
-    const nestedItems = items.filter((item) => item.slug.includes("/"));
-
-    // Sort top-level items
+    const topLevelItems = items.filter(item => !item.slug.includes("/"));
+    const nestedItems = items.filter(item => item.slug.includes("/"));
     const sortedTopLevelItems = sortItems(topLevelItems, orderMap);
-
-    // Sort nested items by their respective parent folders
     const nestedMenu: MenuItemWithDraft[] = [];
-    nestedItems.forEach((item) => {
+
+    nestedItems.forEach(item => {
       const parts = item.slug.split("/");
       let currentLevel = nestedMenu;
 
-      // Traverse and insert items into the correct position
-      parts.forEach((part: string, index: number) => {
-        let existingItem = currentLevel.find(
-          (i) => i.slug === parts.slice(0, index + 1).join("/"),
-        );
-
+      parts.forEach((part, index) => {
+        let existingItem = currentLevel.find(i => i.slug === parts.slice(0, index + 1).join("/"));
         if (!existingItem) {
           existingItem = {
             title: capitalizeFirstLetter(part),
@@ -80,8 +68,7 @@ function buildMenu(items: DocsEntry[]): MenuItem[] {
       });
     });
 
-    // For each top-level item, attach sorted nested items
-    sortedTopLevelItems.forEach((item) => {
+    sortedTopLevelItems.forEach(item => {
       if (item.children) {
         item.children = sortItems(item.children, orderMap);
       }
@@ -90,81 +77,58 @@ function buildMenu(items: DocsEntry[]): MenuItem[] {
     return sortedTopLevelItems;
   }
 
-  items.forEach((item) => {
-    const parts = item.slug.split("/"); // Split slug into parts
+  items.forEach(item => {
+    const parts = item.slug.split("/");
     let currentLevel = menu;
 
-    // Traverse the menu structure based on folder depth
-    parts.forEach((part: string, index: number) => {
-      let existingItem = currentLevel.find(
-        (i) => i.slug === parts.slice(0, index + 1).join("/"),
-      );
-
+    parts.forEach((part, index) => {
+      let existingItem = currentLevel.find(i => i.slug === parts.slice(0, index + 1).join("/"));
       if (!existingItem) {
         existingItem = {
-          title:
-            index === parts.length - 1
-              ? capitalizeFirstLetter(item.data.title || "")
-              : capitalizeFirstLetter(part),
+          title: index === parts.length - 1 ? capitalizeFirstLetter(item.data.title || "") : capitalizeFirstLetter(part),
           slug: parts.slice(0, index + 1).join("/"),
           draft: item.data.draft,
           children: [],
         };
         currentLevel.push(existingItem);
-      } else {
-        // Update title if necessary
-        if (index === parts.length - 1) {
-          existingItem.title = capitalizeFirstLetter(item.data.title || "");
-        }
+      } else if (index === parts.length - 1) {
+        existingItem.title = capitalizeFirstLetter(item.data.title || "");
       }
-
       currentLevel = existingItem.children;
     });
   });
 
-  // Sort top-level items based on menu_order and attach nested items
-  const topLevelMenu = sortTopLevel(menu);
-
-  return topLevelMenu;
+  return sortTopLevel(menu);
 }
 
 export const menu = buildMenu(docs);
 
-// Function to build breadcrumb structure
-export function buildBreadcrumbs(
-  slug: string,
-): { title: string; link: string }[] {
+// Build breadcrumb structure
+export function buildBreadcrumbs(slug: string): { title: string; link: string }[] {
   const parts = slug.split("/");
   const breadcrumbs: { title: string; link: string }[] = [];
   let currentPath = "";
 
-  parts.forEach((part, index) => {
+  parts.forEach(part => {
     if (part) {
       currentPath += `/${part}`;
-      breadcrumbs.push({
-        title: part,
-        link: `${currentPath}`,
-      });
+      breadcrumbs.push({ title: part, link: currentPath });
     }
   });
 
   return breadcrumbs;
 }
 
-// create headings for ToC
+// Create headings for Table of Contents
 export function createHeadingHierarchy(headings: MarkdownHeading[]) {
   const topLevelHeadings: HeadingHierarchy[] = [];
 
-  headings.forEach((heading) => {
-    const h = {
-      ...heading,
-      subheadings: [],
-    };
-
+  headings.forEach(heading => {
+    const h = { ...heading, subheadings: [] };
     if (h.depth >= 2) {
       topLevelHeadings.push(h);
     } else {
-      let parent = topLevelHeadings[topLevelHeadings.length - 1];
+      const parent = topLevelHeadings[topLevelHeadings.length - 1];
       if (parent) {
         parent.subheadings.push(h);
       }
