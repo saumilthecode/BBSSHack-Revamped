@@ -13,9 +13,14 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "clean": "rm -rf dist",                    
+    "build": "astro check && astro build",      
+    "postinstall": "pnpm install --frozen-lockfile", 
     "preview": "astro preview",
     "astro": "astro"
+  },
+  "engines": {                              
+    "node": ">=18.0.0"
   },
   "keywords": [
     "docs",
