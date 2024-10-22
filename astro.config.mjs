@@ -6,7 +6,7 @@ import mdx from "@astrojs/mdx";
 import vercel from '@astrojs/vercel/static';
 
 export default defineConfig({
-  site: "https://celestial.hyperoot.dev",
+  site: "http://bbsshack.club",
   output: 'static',
   adapter: vercel(),
   markdown: {
