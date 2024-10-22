@@ -15,7 +15,7 @@
     "start": "astro dev",
     "clean": "rm -rf dist",                    
     "build": "astro check && astro build",      
-    "postinstall": "pnpm install --frozen-lockfile", 
+    "postinstall": "",
     "preview": "astro preview",
     "astro": "astro"
   },
