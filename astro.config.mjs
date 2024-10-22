@@ -3,20 +3,16 @@ import rehypeExternalLinks from "rehype-external-links";
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 import mdx from "@astrojs/mdx";
-import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel/static';
 
-// https://astro.build/config
 export default defineConfig({
   site: "https://celestial.hyperoot.dev",
   output: 'static',
-  adapter: vercel({
-      webAnalytics: { enabled: true }
-    }),
+  adapter: vercel(),
   markdown: {
     smartypants: true,
     syntaxHighlight: "shiki",
     shikiConfig: {
-      // theme: "catppuccin-mocha",
       themes: {
         light: "catppuccin-latte",
         dark: "catppuccin-macchiato",
