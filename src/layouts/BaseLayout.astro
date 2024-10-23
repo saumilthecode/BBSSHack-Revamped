@@ -12,15 +12,19 @@ const { title, description, ogImage } = Astro.props as BaseLayoutProps;
 ---
 
 <!doctype html>
-<html lang=`${LOCALE.lang ?? "en"}` class="scroll-smooth">
+<html lang={`${LOCALE.lang ?? "en"}`} class="scroll-smooth">
   <head>
     <HeadSEO
-      title=`${title ? capitalizeFirstLetter(title) : SITE.title}`
+      title={`${title ? capitalizeFirstLetter(title) : SITE.title}`}
       description={description}
       ogImage={ogImage}
     />
+    <script>
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
   </head>
-  <body class="bg-background text-foreground font-sans">
+  <body class="bg-background text-foreground font-sans" data-theme="dark">
     <div class="flex flex-col min-h-screen">
       <Header class="bg-background" />
       <main class="flex flex-1 flex-col justify-center items-center px-4">
