@@ -1,0 +1,141 @@
+---
+const teamMembers = [
+  {
+    name: "Saumil",
+    role: "Founder",
+    image: "src/assets/img/saumil.jpeg",
+    description: "Experienced iOS dev. Decent photographer.",
+    github: "https://github.com/saumilthecode",
+    linkedin: "https://www.linkedin.com/in/saumil707/",
+    youtube: ""
+  },
+  {
+    name: "Zenneth",
+    role: "Co-Founder",
+    image: "src/assets/img/zenneth.png",
+    description: "Lua Dev. Python and Lua Mastermind.",
+    github: "https://github.com/zenneth",
+    linkedin: "",
+    youtube: "https://youtube.com/channel/zenneth"
+  },
+  {
+    name: "Daivik",
+    role: "Co-Founder",
+    image: "src/assets/img/bigfatass.jpeg",
+    description: "iOS dev. YouTuber.",
+    github: "https://github.com/gz56",
+    linkedin: "",
+    youtube: "https://www.youtube.com/@realgz56yt2"
+  },
+  {
+    name: "Ethan",
+    role: "Co-Founder",
+    image: "src/assets/img/ethan.webp",
+    description: "Lego connoisseur. Python and Lua enjoyer.",
+    github: "https://github.com/ethandal",
+    linkedin: "",
+    youtube: ""
+  }
+];
+---
+
+<section class="team">
+    <div class="tem">
+    <h1 style="font-size:10vw">Our Team</h1>
+</div>
+    <h6 style="font-size:1.5vw"> we think we know what we're doing</h6>
+    <div class="team-grid">
+      {teamMembers.map((member) => (
+        <div class="team-member">
+          <img src={member.image} alt={`${member.name} photo`} />
+          <h3>{member.name}</h3>
+          <p class="role">{member.role}</p>
+          <p class="description">{member.description}</p>
+
+          <!-- Social Media Buttons -->
+          <div class="social-links">
+            {member.github && <a href={member.github} target="_blank" class="social-btn github">GitHub</a>}
+            {member.linkedin && <a href={member.linkedin} target="_blank" class="social-btn linkedin">LinkedIn</a>}
+            {member.youtube && <a href={member.youtube} target="_blank" class="social-btn youtube">YouTube</a>}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <style>
+    .tem
+    {
+      text-align: top;
+      .font-size: 10vw;
+      vertical-align: text-top;
+
+    }
+    .team {
+      text-align: center;
+      padding: 2rem;
+    }
+    .team-grid {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .team-member {
+      max-width: 200px;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .team-member img {
+      width: 100%;
+      border-radius: 50%;
+      margin-bottom: 0.5rem;
+    }
+    .role {
+      font-weight: bold;
+      /* color: #333; */
+    }
+    .description {
+      font-size: 0.9rem;
+      /* color: #555; */
+      margin: 0.5rem 0;
+    }
+
+    /* Social Media Buttons */
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .social-btn {
+      display: inline-block;
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.8rem;
+    }
+    .github { background-color: #333; }
+    .linkedin { background-color: #0077b5; }
+    .youtube { background-color: #ff0000; }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .team-grid {
+        gap: 1rem;
+      }
+      .team-member {
+        max-width: 150px;
+      }
+      .description {
+        font-size: 0.8rem;
+      }
+      .social-btn {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.6rem;
+      }
+    }
+  </style>
