@@ -6,7 +6,7 @@ export const SITE = {
   desc: "Official Website of THE BBSS Hack Club",
   title: "BBSS Hack Club",
   ogImage: "logo.webp",
-  repo: "https://github.com/saumilthecode/bbsshackclub",
+  repo: "https://github.com/saumilthecode/BBSSHack-Revamped",
 };
 
 export const LOCALE = {
