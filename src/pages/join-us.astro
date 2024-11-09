@@ -1,13 +1,19 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-// import Hero from "@/components/home/hero.astro";
-// import CallToAction from "@/components/home/CallToAction.astro";
-// import Entice from "@/components/home/entice.astro";
+
+// Method 1: Client-side redirect
+const redirectUrl = "https://forms.fillout.com/t/tjJdu2yq8xus";
 ---
 
 <BaseLayout
   title="BBSS Hack Club"
   description="Official website of THE Hack Club in BBSS."
 >
-  
+  <meta http-equiv="refresh" content={`0;url=${redirectUrl}`} />
+  <script define:vars={{ redirectUrl }}>
+    window.location.href = redirectUrl;
+  </script>
+  <div class="flex items-center justify-center min-h-screen">
+    <p>Redirecting to forms page...</p>
+  </div>
 </BaseLayout>
