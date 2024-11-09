@@ -7,7 +7,8 @@ const teamMembers = [
     description: "Experienced iOS dev, decent photographer.",
     github: "https://github.com/saumilthecode",
     linkedin: "https://www.linkedin.com/in/saumil707/",
-    youtube: ""
+    youtube: "",
+    email: "saumil@bbsshack.club"
   },
   {
     name: "Zenneth",
@@ -16,7 +17,8 @@ const teamMembers = [
     description: "Lua Dev. Python and Lua Mastermind.",
     github: "https://github.com/zenneth",
     linkedin: "",
-    youtube: ""
+    youtube: "",
+    email: "zenneth@bbsshack.club"
   },
   {
     name: "Daivik",
@@ -25,7 +27,8 @@ const teamMembers = [
     description: "iOS dev, YouTuber.",
     github: "https://github.com/gz56",
     linkedin: "",
-    youtube: "https://www.youtube.com/@realgz56yt2"
+    youtube: "https://www.youtube.com/@realgz56yt2",
+    email: "daivik@bbsshack.club"
   },
   {
     name: "Ethan",
@@ -34,10 +37,12 @@ const teamMembers = [
     description: "Lego connoisseur. Python and Lua enjoyer.",
     github: "https://github.com/ethandal",
     linkedin: "",
-    youtube: ""
+    youtube: "",
+    email: "ethan@bbsshack.club"
   }
 ];
 ---
+
 <!-- Font Awesome stylesheet link -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -45,7 +50,6 @@ const teamMembers = [
 <section class="team">
     <div class="tem">
         <h1 style="font-size:10vw; margin-bottom: 20px;">Our Team</h1>
-
     </div>
     <h6 style="font-size:smaller; margin-top: 20px;">we think we know what we're doing</h6>
     <div class="team-grid">
@@ -58,18 +62,23 @@ const teamMembers = [
 
                 <div class="social-links">
                     {member.github && (
-                        <a href={member.github} target="_blank" class="social-btn github">
+                        <a href={member.github} target="_blank" rel="noopener noreferrer" class="social-btn github">
                             <i class="fa fa-github"></i>
                         </a>
                     )}
                     {member.linkedin && (
-                        <a href={member.linkedin} target="_blank" class="social-btn linkedin">
+                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" class="social-btn linkedin">
                             <i class="fa fa-linkedin"></i>
                         </a>
                     )}
                     {member.youtube && (
-                        <a href={member.youtube} target="_blank" class="social-btn youtube">
+                        <a href={member.youtube} target="_blank" rel="noopener noreferrer" class="social-btn youtube">
                             <i class="fa fa-youtube"></i>
+                        </a>
+                    )}
+                    {member.email && (
+                        <a href={`mailto:${member.email}`} class="social-btn email">
+                            <i class="fa fa-envelope"></i>
                         </a>
                     )}
                 </div>
@@ -129,18 +138,15 @@ const teamMembers = [
         text-decoration: none;
         font-size: 1.2rem;
     }
-    /* .github { background-color: #333; }
-    .linkedin { background-color: #0077b5; }
-    .youtube { background-color: #ff0000; } */
 
     /* Responsive adjustments */
-        @media (max-width: 768px) {
+    @media (max-width: 768px) {
         .team {
-            padding: 1rem; /* Reduce side padding */
+            padding: 1rem;
         }
 
         .team-grid {
-            gap: 0.5rem; /* Adjust grid gap for a tighter layout */
+            gap: 0.5rem;
         }
 
         .team-member {
