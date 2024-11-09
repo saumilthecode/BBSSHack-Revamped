@@ -1,0 +1,135 @@
+---
+const Competitions = [
+  {
+    name: "Swift Explorers Singapore 2024",
+    image: "https://cloud-fu9r7fufm-hack-club-bot.vercel.app/0aboutbbss.webp",
+    description: "In 2024, Saumil, Zenneth, Ethan, Daivik and Kevin participated in the Swift Explorers Singapore 2024 programme. From the programme they learned the fundamental of using Swift to create a experience for anyone. Check out their projects Recycler and About-BBSS.",
+    projectLink: "https://dev.bbsshack.club/projects",
+    linkType: "website"
+  },
+  {
+    name: "National Youth Tech Championships 2024",
+    image: "https://cloud-5hnwjfoa6-hack-club-bot.vercel.app/0nytc.jpg",
+    description: "In mid 2024 Saumil, Zenneth, Ethan and Naung Phone competed in NYTC. Although they didn't win they did learn a lot about Machine Learning Models as well as how to use python for the Tello Drone platform. Check out their team introduction ↓",
+    projectLink: "https://www.youtube.com/watch?v=rDZHAjA3ZVk",
+    linkType: "youtube"
+  },
+  {
+    name: "Grey Cat The Flag '24 CTF",
+    image: "https://cloud-1xr0k2g41-hack-club-bot.vercel.app/0scr-20240425-qnwt.png",
+    description: "Grey Cat The Flag was a CTF that Saumil, Zenneth, Ethan, Daivik and Naung Phone participated in. Although they didn't manage to win anything since it was their first CTF, they emerged 269th out of the 407 non-zero scored teams! Read their writeup ↓",
+    projectLink: "https://github.com/saumilthecode/A-writeup-of-sorts-greycattheflag",
+    linkType: "github"
+  },
+  {
+    name: "DSTA BrainHack TIL-AI 2024",
+    image: "https://cloud-lgnf35ovk-hack-club-bot.vercel.app/0clipboard-image-1.png",
+    description: "BrainHack TIl-AI was a competition and learning experience about AI and Machine Learning that Saumil, Ethan, Zenneth, Daivik and Naung Phone participated in. Through this competition, they learned how to train ml models through the Vertex AI GCP platform. Find out more ↓ ",
+    projectLink: "https://www.dstabrainhack.com/activities/til-ai",
+    linkType: "website"
+  }
+];
+---
+<!-- Font Awesome stylesheet link -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Team Section -->
+<section class="team">
+    <section class="competitions">
+        <div class="header">
+            <h1 style="font-size:10vw; margin-bottom: 20px;">Competitions</h1>
+        </div>
+        <h6 style="font-size:smaller; margin-top: 20px;">
+            Since we're a completely student-run interest group, we are open to you joining any competitions that fit your skills and interests. Let us know how we can support you!
+        </h6>
+    </section>
+    <div class="competition-grid">
+        {Competitions.map((competition) => (
+            <div class="competition-entry">
+                <img src={competition.image} alt={`${competition.name} logo`} />
+                <h3>{competition.name}</h3>
+                <p class="description">{competition.description}</p>
+
+                <div class="project-link">
+                    {competition.linkType === "github" && (
+                        <a href={competition.projectLink} target="_blank" class="project-btn">
+                            <i class="fa fa-github"></i> View Project
+                        </a>
+                    )}
+                    {competition.linkType === "youtube" && (
+                        <a href={competition.projectLink} target="_blank" class="project-btn">
+                            <i class="fa fa-youtube"></i> Watch Video
+                        </a>
+                    )}
+                    {competition.linkType === "website" && (
+                        <a href={competition.projectLink} target="_blank" class="project-btn">
+                            <i class="fa fa-globe"></i> Visit Website
+                        </a>
+                    )}
+                </div>
+            </div>
+        ))}
+    </div>
+
+<style>
+.header {
+    text-align: center;
+    font-size: 10vw;
+    margin-top: 1rem;
+}
+
+.competitions {
+    text-align: center;
+    padding: 2rem;
+}
+
+.competition-grid {
+    display: flex;
+    gap: 2rem; /* Increased gap for larger spacing */
+    flex-wrap: wrap;
+    justify-content: center; /* Center align items */
+}
+
+.competition-entry {
+    max-width: 300px; /* Increased max width */
+    padding: 1.5rem; /* Increased padding */
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.competition-entry img {
+    width: 100%;
+    max-height: 180px; /* Optional: Set a max height */
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+}
+
+.description {
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+}
+
+.project-btn {
+    display: inline-block;
+    padding: 0.5rem;
+    /* color: #333; */
+    text-decoration: green wavy underline;
+    font-size: 1.2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .competition-grid {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        gap: 1rem;
+    }
+    .competition-entry {
+        max-width: 100%; /* Make each competition take full width */
+    }
+    .description {
+        font-size: 0.8rem;
+    }
+}
+</style>
