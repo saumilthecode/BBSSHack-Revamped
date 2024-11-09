@@ -4,7 +4,7 @@ const teamMembers = [
     name: "Saumil",
     role: "Founder",
     image: "https://cloud-k1zq3nx08-hack-club-bot.vercel.app/0saumil.jpeg",
-    description: "Experienced iOS dev. Decent photographer.",
+    description: "Experienced iOS dev, decent photographer.",
     github: "https://github.com/saumilthecode",
     linkedin: "https://www.linkedin.com/in/saumil707/",
     youtube: ""
@@ -22,7 +22,7 @@ const teamMembers = [
     name: "Daivik",
     role: "Co-Founder",
     image: "https://cloud-dq52iggbr-hack-club-bot.vercel.app/0bigfatass.jpeg",
-    description: "iOS dev. YouTuber.",
+    description: "iOS dev, YouTuber.",
     github: "https://github.com/gz56",
     linkedin: "",
     youtube: "https://www.youtube.com/@realgz56yt2"
@@ -44,9 +44,10 @@ const teamMembers = [
 <!-- Team Section -->
 <section class="team">
     <div class="tem">
-        <h1 style="font-size:10vw">Our Team</h1>
+        <h1 style="font-size:10vw; margin-bottom: 20px;">Our Team</h1>
+
     </div>
-    <h6 style="font-size:1.5vw">we think we know what we're doing</h6>
+    <h6 style="font-size:smaller; margin-top: 20px;">we think we know what we're doing</h6>
     <div class="team-grid">
         {teamMembers.map((member) => (
             <div class="team-member">
@@ -95,7 +96,7 @@ const teamMembers = [
     }
     .team-member {
         max-width: 200px;
-        padding: 1rem;
+        padding: 0.4rem;
         border-radius: 8px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         text-align: center;
@@ -133,16 +134,25 @@ const teamMembers = [
     .youtube { background-color: #ff0000; } */
 
     /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .team-grid {
-            gap: 1rem;
+        @media (max-width: 768px) {
+        .team {
+            padding: 1rem; /* Reduce side padding */
         }
+
+        .team-grid {
+            gap: 0.5rem; /* Adjust grid gap for a tighter layout */
+        }
+
         .team-member {
             max-width: 150px;
         }
+
         .description {
             font-size: 0.8rem;
+            max-width: 125px;
+            line-height: 1.5em;
         }
+
         .social-btn {
             font-size: 1rem;
             padding: 0.4rem;

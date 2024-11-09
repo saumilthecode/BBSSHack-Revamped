@@ -5,28 +5,27 @@ import { MenuIcon, X } from "lucide-react";
 ---
 
 <style>
+.menu-overlay {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  inset: 0;
+  background-color: rgb(255, 255, 255);
+  z-index: 9999;
+  overflow-y: auto;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+@media (prefers-color-scheme: dark) {
   .menu-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background-color: rgb(255, 255, 255);
-    z-index: 9999;
-    overflow-y: auto;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    background-color: rgb(9, 9, 11);
   }
+}
 
-  @media (prefers-color-scheme: dark) {
-    .menu-overlay {
-      background-color: rgb(9, 9, 11);
-    }
-  }
-
-  .menu-overlay.active {
-    display: flex;
-    flex-direction: column;
-    opacity: 1;
-  }
+.menu-overlay.active {
+  visibility: visible;
+  opacity: 1;
+}
 
   .menu-content {
     padding: 2rem;
@@ -118,27 +117,43 @@ import { MenuIcon, X } from "lucide-react";
 </div>
 
 <script is:inline>
-  function toggleMenu() {
+  function initializeMenuToggle() {
+    const menuToggleButton = document.querySelector("#menu-toggle button");
+    const closeMenuButton = document.getElementById('close-menu');
     const menuOverlay = document.querySelector('.menu-overlay');
-    if (menuOverlay) {
-      menuOverlay.classList.toggle('active');
-      document.body.style.overflow = menuOverlay.classList.contains('active') ? 'hidden' : '';
-    }
-  }
 
-  document.getElementById('menu-toggle')?.addEventListener('click', toggleMenu);
-  document.getElementById('close-menu')?.addEventListener('click', toggleMenu);
-
-  document.querySelectorAll('.menu-overlay a').forEach(link => {
-    link.addEventListener('click', toggleMenu);
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      const menuOverlay = document.querySelector('.menu-overlay');
-      if (menuOverlay?.classList.contains('active')) {
-        toggleMenu();
+    function toggleMenu() {
+      if (menuOverlay) {
+        menuOverlay.classList.toggle('active');
+        document.body.style.overflow = menuOverlay.classList.contains('active') ? 'hidden' : 'auto';
       }
     }
-  });
+
+    if (menuToggleButton) {
+      menuToggleButton.addEventListener('click', toggleMenu);
+    }
+    if (closeMenuButton) {
+      closeMenuButton.addEventListener('click', toggleMenu);
+    }
+
+    document.querySelectorAll('.menu-overlay a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (menuOverlay.classList.contains('active')) {
+          toggleMenu();
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOverlay.classList.contains('active')) {
+        toggleMenu();
+      }
+    });
+  }
+
+  // Initialize on initial page load
+  document.addEventListener("DOMContentLoaded", initializeMenuToggle);
+
+  // Re-initialize on page navigation using Astro's after-swap event
+  document.addEventListener("astro:after-swap", initializeMenuToggle);
 </script>
