@@ -1,23 +1,441 @@
 ---
-import GridView from 'src/components/GridView.astro';
-
 const items = [
-  { id: "1", title: "Grass", imageUrl: "https://cloud-iayokalsy-hack-club-bot.vercel.app/0grass.jpg", description: "Created by Saumil in 2022 under the Swift Accelerator Programme, Grass is a application that aims to help forgetful plant owners who oftentimes want to have a plant but cant seem to sustain one for the life of them (and the life of the plant)  :) Grass helps you (yes you forgetful plant owner) to water and fertilize your plant through frequent notifications.\nYou can check it out at https://app.swiftinsg.org/grass!", cornerRadius: "22px" },
-  { id: "2", title: "Journify", imageUrl: "https://cloud-16y3df52h-hack-club-bot.vercel.app/0journify.png", description: "Created by Daivik in 2023 under the Swift Accelerator Programme, Journify is a application that allows you to set up a itinerary to keep your travels organized! You can check it out at https://app.swiftinsg.org/journify!.", cornerRadius: "22px" },
-  { id: "3", title: "About BBSS!", imageUrl: ["https://cloud-jxs6lce4u-hack-club-bot.vercel.app/0screenshot1.webp", "https://cloud-jxs6lce4u-hack-club-bot.vercel.app/1screenshot2.webp", "https://cloud-jxs6lce4u-hack-club-bot.vercel.app/2screenshot3.webp", "https://cloud-jxs6lce4u-hack-club-bot.vercel.app/3screenshot4.webp", "https://cloud-jxs6lce4u-hack-club-bot.vercel.app/4screenshot5.webp"], description: "During the Swift Explorers Programme 2024 Saumil, Daivik and Zenneth made 'About BBSS' as a supliment to our existing school outreach schemes! Check it out at https://github.com/saumilthecode/propoganda!." },
-  { id: "4", title: "Recycler", imageUrl: ["https://cloud-jdazid16m-hack-club-bot.vercel.app/0recycler1.webp", "https://cloud-jdazid16m-hack-club-bot.vercel.app/1recycler2.webp", "https://cloud-jdazid16m-hack-club-bot.vercel.app/2recycler3.webp", "https://cloud-jdazid16m-hack-club-bot.vercel.app/3recycler4.webp", "https://cloud-jdazid16m-hack-club-bot.vercel.app/4recycler5.webp"], description: "Recycler is a simple project that allows you to recycle your own items." },
-  { id: "5", title: "Websites!", imageUrl: "https://cloud-6s3lljuc3-hack-club-bot.vercel.app/0image.png", description: "Check out ALL of our websites at https://websites.bbsshack.club" },
+  { id: "1", title: "Grass", imageUrl: "https://cloud-iayokalsy-hack-club-bot.vercel.app/0grass.jpg", description: "Created by Saumil in 2022 under the Swift Accelerator Programme, Grass is an application that helps forgetful plant owners. It notifies them to water and fertilize their plants. Check it out on the App Store!", cornerRadius: "22px", projectLink: "", linkType: "appstore", appStoreLink: "https://apps.apple.com/us/app/grass-grow-plants/id6444735516" },
+  { id: "2", title: "Journify", imageUrl: "https://cloud-16y3df52h-hack-club-bot.vercel.app/0journify.png", description: "Created by Daivik in 2023 under the Swift Accelerator Programme, Journify is an app that helps organize travel itineraries. Check it out on the App Store!", cornerRadius: "22px", projectLink: "", linkType: "appstore", appStoreLink: "https://apps.apple.com/us/app/journify/id6473674178" },
+  { id: "3", title: "About BBSS!", imageUrl: ["https://cloud-jxs6lce4u-hack-club-bot.vercel.app/0screenshot1.webp", "https://cloud-jxs6lce4u-hack-club-bot.vercel.app/1screenshot2.webp", "https://cloud-jxs6lce4u-hack-club-bot.vercel.app/2screenshot3.webp", "https://cloud-jxs6lce4u-hack-club-bot.vercel.app/3screenshot4.webp", "https://cloud-jxs6lce4u-hack-club-bot.vercel.app/4screenshot5.webp"], description: "During the Swift Explorers Programme 2024, Saumil, Daivik, and Zenneth made 'About BBSS' as a supplement to our existing school outreach schemes! Check it out at https://github.com/saumilthecode/propoganda!", projectLink: "https://github.com/saumilthecode/propoganda", linkType: "github" },
+  { id: "4", title: "Recycler", imageUrl: ["https://cloud-jdazid16m-hack-club-bot.vercel.app/0recycler1.webp", "https://cloud-jdazid16m-hack-club-bot.vercel.app/1recycler2.webp", "https://cloud-jdazid16m-hack-club-bot.vercel.app/2recycler3.webp", "https://cloud-jdazid16m-hack-club-bot.vercel.app/3recycler4.webp", "https://cloud-jdazid16m-hack-club-bot.vercel.app/4recycler5.webp"], description: "Recycler is a simple project that allows you to recycle your own items.", projectLink: "https://github.com/saumilthecode/recycler", linkType: "github" },
+  { id: "5", title: "Websites!", imageUrl: "https://cloud-6s3lljuc3-hack-club-bot.vercel.app/0image.png", description: "Check out ALL of our websites at https://websites.bbsshack.club", projectLink: "https://websites.bbsshack.club", linkType: "website" }
 ];
-
 ---
-<h1
-class="text-pretty text-center md:text-left md:text-4xl lg:text-5xl tracking-wide"
->
-Projects made <i class="text-primary">for an impact</i>
-</h1>
 
-<div class="mb-8"></div> <!-- Added space between the text and the GridView -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<GridView items={items} />
+<section class="team">
+  <section class="competitions">
+    <div class="header">
+      <h1>Projects</h1>
+    </div>
+    <h6 class="tagline">
+      made <i class="text-primary">for an impact</i>
+    </h6>
+  </section>
 
-<div class="mb-8"></div> <!-- Added space below the GridView -->
+  <div class="competition-grid">
+    {
+      items.map((project) => (
+        <div class="competition-entry">
+          <div class="carousel-container">
+            {Array.isArray(project.imageUrl) ? (
+              <>
+                <div class="carousel" id={`carousel-${project.id}`}>
+                  {project.imageUrl.map((url, index) => (
+                    <img
+                      src={url}
+                      alt={`${project.title} screenshot ${index + 1}`}
+                      loading="lazy"
+                    />
+                  ))}
+                </div>
+                <div class="carousel-controls">
+                  <button class="prev" data-project-id={project.id}>&lt;</button>
+                  <button class="next" data-project-id={project.id}>&gt;</button>
+                </div>
+                <div class="carousel-indicators">
+                  {project.imageUrl.map((_, index) => (
+                    <button
+                      class="indicator"
+                      data-project-id={project.id}
+                      data-index={index}
+                      aria-label={`Go to slide ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div class="app-icon">
+                <img src={project.imageUrl} alt={`${project.title} logo`} />
+              </div>
+            )}
+          </div>
+
+          <h3>{project.title}</h3>
+          <p class="description">{project.description}</p>
+
+          <div class="project-links">
+            {project.linkType !== "appstore" && (
+              <a href={project.projectLink} target="_blank" class="project-btn">
+                <i class={`fa fa-${project.linkType === "github" ? "github" : project.linkType === "youtube" ? "youtube" : "globe"}`} />
+                {project.linkType === "github" ? "View Project" : project.linkType === "youtube" ? "Watch Video" : "Visit Website"}
+              </a>
+            )}
+            {project.linkType === "appstore" && (
+              <a href={project.appStoreLink} target="_blank" class="app-store-btn">
+                <img
+                  src="https://cloud-5o4k5p3sq-hack-club-bot.vercel.app/0download_on_the_app_store_badge_us-uk_rgb_blk_092917.svg"
+                  alt="Download on the App Store"
+                  class="app-store-badge"
+                />
+              </a>
+            )}
+            </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .header {
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .header h1 {
+    font-size: clamp(2rem, 10vw, 6rem);
+    margin-bottom: 20px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  }
+
+  .competitions {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .tagline {
+    font-size: clamp(0.8rem, 1vw, 1.2rem);
+    margin-top: 20px;
+  }
+
+  .competition-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .competition-entry {
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .carousel-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    aspect-ratio: 16 / 9;
+    touch-action: pan-y pinch-zoom;
+  }
+
+  .app-icon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .app-icon img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 22px;
+  }
+
+  .carousel {
+    display: flex;
+    transition: transform 0.3s ease-out;
+    height: 100%;
+    width: 100%;
+  }
+
+  .carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    flex-shrink: 0;
+    pointer-events: none;
+  }
+
+  .carousel-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .carousel-container:hover .carousel-controls {
+    opacity: 1;
+  }
+
+  .carousel-controls button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    border-radius: 4px;
+    margin: 0 8px;
+    z-index: 2;
+  }
+
+  .carousel-controls button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  .carousel-indicators {
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    z-index: 2;
+  }
+
+  .indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .indicator.active {
+    background-color: white;
+  }
+
+  .description {
+    font-size: 0.9rem;
+    margin: 1rem 0;
+    line-height: 1.5;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .project-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: all 0.3s;
+  }
+
+    .project-btn:hover {
+      background-color: #f7fafc;
+      transform: translateY(-2px);
+    }
+
+    .app-store-btn {
+    display: inline-block;
+    transition: opacity 0.3s;
+  }
+
+  .app-store-btn:hover {
+    opacity: 0.8;
+  }
+
+  .app-store-badge {
+    width: 156px;  /* This is the standard width for Apple's badge */
+    height: auto;
+  }
+
+  @media (max-width: 768px) {
+    .competition-grid {
+      grid-template-columns: 1fr;
+      padding: 1rem;
+    }
+
+    .description {
+      font-size: 0.8rem;
+    }
+
+    .carousel-controls {
+      opacity: 1;
+    }
+
+    .project-links {
+      flex-direction: column;
+    }
+
+    .app-icon img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+</style>
+
+<script>
+  class Carousel {
+    constructor(container) {
+      this.container = container;
+      this.carousel = container.querySelector('.carousel');
+      if (!this.carousel) return;
+
+      this.images = this.carousel.querySelectorAll('img');
+      this.projectId = this.carousel.id.split('-')[1];
+      this.currentIndex = 0;
+      this.touchStartX = 0;
+      this.touchEndX = 0;
+      this.initialTransform = 0;
+      this.indicators = [...container.querySelectorAll('.indicator')];
+
+      this.setupListeners();
+      this.updateIndicators();
+    }
+
+    setupListeners() {
+      if (!this.carousel) return;
+
+      // Touch events
+      this.carousel.addEventListener('touchstart', (e) => {
+        this.touchStartX = e.touches[0].clientX;
+        this.initialTransform = this.getCurrentTransform();
+        this.carousel.style.transition = 'none';
+      });
+
+      this.carousel.addEventListener('touchmove', (e) => {
+        const touch = e.touches[0];
+        const diff = touch.clientX - this.touchStartX;
+        const newTransform = this.initialTransform + diff;
+        this.carousel.style.transform = `translateX(${newTransform}px)`;
+      });
+
+      this.carousel.addEventListener('touchend', (e) => {
+        this.carousel.style.transition = 'transform 0.3s ease-out';
+        const diff = e.changedTouches[0].clientX - this.touchStartX;
+        const threshold = window.innerWidth * 0.15;
+
+        if (Math.abs(diff) > threshold) {
+          if (diff > 0 && this.currentIndex > 0) {
+            this.currentIndex--;
+          } else if (diff < 0 && this.currentIndex < this.images.length - 1) {
+            this.currentIndex++;
+          }
+        }
+
+        this.goToSlide(this.currentIndex);
+      });
+
+      // Mouse drag events
+      let isDragging = false;
+      let startX;
+      let scrollLeft;
+
+      this.carousel.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        this.carousel.style.transition = 'none';
+        startX = e.pageX - this.carousel.offsetLeft;
+        scrollLeft = this.getCurrentTransform();
+      });
+
+      this.carousel.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - this.carousel.offsetLeft;
+        const diff = x - startX;
+        this.carousel.style.transform = `translateX(${scrollLeft + diff}px)`;
+      });
+
+      const endDrag = (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+        this.carousel.style.transition = 'transform 0.3s ease-out';
+
+        const diff = e.pageX - startX;
+        const threshold = window.innerWidth * 0.15;
+
+        if (Math.abs(diff) > threshold) {
+          if (diff > 0 && this.currentIndex > 0) {
+            this.currentIndex--;
+          } else if (diff < 0 && this.currentIndex < this.images.length - 1) {
+            this.currentIndex++;
+          }
+        }
+
+        this.goToSlide(this.currentIndex);
+      };
+
+      this.carousel.addEventListener('mouseup', endDrag);
+      this.carousel.addEventListener('mouseleave', endDrag);
+
+      // Button controls
+      this.container.querySelectorAll('button').forEach(button => {
+        if (button.classList.contains('prev')) {
+          button.addEventListener('click', () => this.prev());
+        } else if (button.classList.contains('next')) {
+          button.addEventListener('click', () => this.next());
+        } else if (button.classList.contains('indicator')) {
+          button.addEventListener('click', () => {
+            const index = parseInt(button.dataset.index);
+            this.goToSlide(index);
+          });
+        }
+      });
+    }
+
+    getCurrentTransform() {
+      const style = window.getComputedStyle(this.carousel);
+      const matrix = new DOMMatrix(style.transform);
+      return matrix.m41;
+    }
+
+    goToSlide(index) {
+      this.currentIndex = index;
+      const width = this.images[0].offsetWidth;
+      this.carousel.style.transform = `translateX(${-width * index}px)`;
+      this.updateIndicators();
+    }
+
+    prev() {
+      if (this.currentIndex > 0) {
+        this.goToSlide(this.currentIndex - 1);
+      }
+    }
+
+    next() {
+      if (this.currentIndex < this.images.length - 1) {
+        this.goToSlide(this.currentIndex + 1);
+      }
+    }
+
+    updateIndicators() {
+      this.indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === this.currentIndex);
+      });
+    }
+  }
+
+  // Initialize carousels after DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.carousel-container').forEach(container => {
+      if (container.querySelector('.carousel')) {
+        new Carousel(container);
+      }
+    });
+  });
+</script>
