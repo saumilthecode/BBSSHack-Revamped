@@ -290,152 +290,159 @@ const items = [
 </style>
 
 <script>
-  class Carousel {
-    constructor(container) {
-      this.container = container;
-      this.carousel = container.querySelector('.carousel');
-      if (!this.carousel) return;
+class Carousel {
+  private container: HTMLElement;
+  private carousel: HTMLElement | null;
+  private images: NodeListOf<HTMLImageElement> = document.querySelectorAll(''); // initialized with empty NodeList
+  private projectId: string | undefined; // set as undefined to handle initialization later
+  private currentIndex: number = 0;
+  private touchStartX: number = 0;
+  private touchEndX: number = 0; // initialized, though it's unused
+  private initialTransform: number = 0;
+  private indicators: HTMLElement[] = []; // initialized as empty array
 
-      this.images = this.carousel.querySelectorAll('img');
-      this.projectId = this.carousel.id.split('-')[1];
-      this.currentIndex = 0;
-      this.touchStartX = 0;
-      this.touchEndX = 0;
-      this.initialTransform = 0;
-      this.indicators = [...container.querySelectorAll('.indicator')];
+  constructor(container: HTMLElement) {
+    this.container = container;
+    this.carousel = container.querySelector('.carousel');
+    if (!this.carousel) return;
 
-      this.setupListeners();
-      this.updateIndicators();
-    }
+    this.images = this.carousel.querySelectorAll('img');
+    this.projectId = this.carousel.id.split('-')[1];
+    this.currentIndex = 0;
+    this.touchStartX = 0;
+    this.initialTransform = 0;
+    this.indicators = Array.from(container.querySelectorAll('.indicator')) as HTMLElement[];
 
-    setupListeners() {
-      if (!this.carousel) return;
+    this.setupListeners();
+    this.updateIndicators();
+  }
 
-      // Touch events
-      this.carousel.addEventListener('touchstart', (e) => {
-        this.touchStartX = e.touches[0].clientX;
-        this.initialTransform = this.getCurrentTransform();
-        this.carousel.style.transition = 'none';
-      });
+  private setupListeners() {
+    if (!this.carousel) return;
 
-      this.carousel.addEventListener('touchmove', (e) => {
-        const touch = e.touches[0];
-        const diff = touch.clientX - this.touchStartX;
-        const newTransform = this.initialTransform + diff;
-        this.carousel.style.transform = `translateX(${newTransform}px)`;
-      });
+    // Touch events
+    this.carousel.addEventListener('touchstart', (e: TouchEvent) => {
+      this.touchStartX = e.touches[0].clientX;
+      this.initialTransform = this.getCurrentTransform();
+      this.carousel!.style.transition = 'none';
+    });
 
-      this.carousel.addEventListener('touchend', (e) => {
-        this.carousel.style.transition = 'transform 0.3s ease-out';
-        const diff = e.changedTouches[0].clientX - this.touchStartX;
-        const threshold = window.innerWidth * 0.15;
+    this.carousel.addEventListener('touchmove', (e: TouchEvent) => {
+      const touch = e.touches[0];
+      const diff = touch.clientX - this.touchStartX;
+      const newTransform = this.initialTransform + diff;
+      this.carousel!.style.transform = `translateX(${newTransform}px)`;
+    });
 
-        if (Math.abs(diff) > threshold) {
-          if (diff > 0 && this.currentIndex > 0) {
-            this.currentIndex--;
-          } else if (diff < 0 && this.currentIndex < this.images.length - 1) {
-            this.currentIndex++;
-          }
+    this.carousel.addEventListener('touchend', (e: TouchEvent) => {
+      this.carousel!.style.transition = 'transform 0.3s ease-out';
+      const diff = e.changedTouches[0].clientX - this.touchStartX;
+      const threshold = window.innerWidth * 0.15;
+
+      if (Math.abs(diff) > threshold) {
+        if (diff > 0 && this.currentIndex > 0) {
+          this.currentIndex--;
+        } else if (diff < 0 && this.currentIndex < this.images.length - 1) {
+          this.currentIndex++;
         }
-
-        this.goToSlide(this.currentIndex);
-      });
-
-      // Mouse drag events
-      let isDragging = false;
-      let startX;
-      let scrollLeft;
-
-      this.carousel.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        this.carousel.style.transition = 'none';
-        startX = e.pageX - this.carousel.offsetLeft;
-        scrollLeft = this.getCurrentTransform();
-      });
-
-      this.carousel.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.pageX - this.carousel.offsetLeft;
-        const diff = x - startX;
-        this.carousel.style.transform = `translateX(${scrollLeft + diff}px)`;
-      });
-
-      const endDrag = (e) => {
-        if (!isDragging) return;
-        isDragging = false;
-        this.carousel.style.transition = 'transform 0.3s ease-out';
-
-        const diff = e.pageX - startX;
-        const threshold = window.innerWidth * 0.15;
-
-        if (Math.abs(diff) > threshold) {
-          if (diff > 0 && this.currentIndex > 0) {
-            this.currentIndex--;
-          } else if (diff < 0 && this.currentIndex < this.images.length - 1) {
-            this.currentIndex++;
-          }
-        }
-
-        this.goToSlide(this.currentIndex);
-      };
-
-      this.carousel.addEventListener('mouseup', endDrag);
-      this.carousel.addEventListener('mouseleave', endDrag);
-
-      // Button controls
-      this.container.querySelectorAll('button').forEach(button => {
-        if (button.classList.contains('prev')) {
-          button.addEventListener('click', () => this.prev());
-        } else if (button.classList.contains('next')) {
-          button.addEventListener('click', () => this.next());
-        } else if (button.classList.contains('indicator')) {
-          button.addEventListener('click', () => {
-            const index = parseInt(button.dataset.index);
-            this.goToSlide(index);
-          });
-        }
-      });
-    }
-
-    getCurrentTransform() {
-      const style = window.getComputedStyle(this.carousel);
-      const matrix = new DOMMatrix(style.transform);
-      return matrix.m41;
-    }
-
-    goToSlide(index) {
-      this.currentIndex = index;
-      const width = this.images[0].offsetWidth;
-      this.carousel.style.transform = `translateX(${-width * index}px)`;
-      this.updateIndicators();
-    }
-
-    prev() {
-      if (this.currentIndex > 0) {
-        this.goToSlide(this.currentIndex - 1);
       }
-    }
 
-    next() {
-      if (this.currentIndex < this.images.length - 1) {
-        this.goToSlide(this.currentIndex + 1);
+      this.goToSlide(this.currentIndex);
+    });
+
+    // Mouse drag events
+    let isDragging = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    this.carousel.addEventListener('mousedown', (e: MouseEvent) => {
+      isDragging = true;
+      this.carousel!.style.transition = 'none';
+      startX = e.pageX - this.carousel!.offsetLeft;
+      scrollLeft = this.getCurrentTransform();
+    });
+
+    this.carousel.addEventListener('mousemove', (e: MouseEvent) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - this.carousel!.offsetLeft;
+      const diff = x - startX;
+      this.carousel!.style.transform = `translateX(${scrollLeft + diff}px)`;
+    });
+
+    const endDrag = (e: MouseEvent) => {
+      if (!isDragging) return;
+      isDragging = false;
+      this.carousel!.style.transition = 'transform 0.3s ease-out';
+
+      const diff = e.pageX - startX;
+      const threshold = window.innerWidth * 0.15;
+
+      if (Math.abs(diff) > threshold) {
+        if (diff > 0 && this.currentIndex > 0) {
+          this.currentIndex--;
+        } else if (diff < 0 && this.currentIndex < this.images.length - 1) {
+          this.currentIndex++;
+        }
       }
-    }
 
-    updateIndicators() {
-      this.indicators.forEach((indicator, index) => {
-        indicator.classList.toggle('active', index === this.currentIndex);
-      });
+      this.goToSlide(this.currentIndex);
+    };
+
+    this.carousel.addEventListener('mouseup', endDrag);
+    this.carousel.addEventListener('mouseleave', endDrag);
+
+    // Button controls
+    this.container.querySelectorAll('button').forEach((button) => {
+      if (button.classList.contains('prev')) {
+        button.addEventListener('click', () => this.prev());
+      } else if (button.classList.contains('next')) {
+        button.addEventListener('click', () => this.next());
+      } else if (button.classList.contains('indicator')) {
+        button.addEventListener('click', () => {
+          const index = parseInt((button as HTMLElement).dataset.index || '0');
+          this.goToSlide(index);
+        });
+      }
+    });
+  }
+
+  private getCurrentTransform(): number {
+    const style = window.getComputedStyle(this.carousel!);
+    const matrix = new DOMMatrix(style.transform);
+    return matrix.m41;
+  }
+
+  private goToSlide(index: number) {
+    this.currentIndex = index;
+    const width = this.images[0].offsetWidth;
+    this.carousel!.style.transform = `translateX(${-width * index}px)`;
+    this.updateIndicators();
+  }
+
+  private prev() {
+    if (this.currentIndex > 0) {
+      this.goToSlide(this.currentIndex - 1);
     }
   }
 
-  // Initialize carousels after DOM is loaded
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.carousel-container').forEach(container => {
-      if (container.querySelector('.carousel')) {
-        new Carousel(container);
-      }
+  private next() {
+    if (this.currentIndex < this.images.length - 1) {
+      this.goToSlide(this.currentIndex + 1);
+    }
+  }
+
+  private updateIndicators() {
+    this.indicators.forEach((indicator, index) => {
+      indicator.classList.toggle('active', index === this.currentIndex);
     });
+  }
+}
+
+// Initialize carousels after DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.carousel-container').forEach((container) => {
+    new Carousel(container as HTMLElement);
   });
+});
 </script>
