@@ -8,6 +8,7 @@ import vercel from '@astrojs/vercel/static';
 import vercel from '@astrojs/vercel/serverless';
 import sitemap from '@astrojs/sitemap';
 // import  SpeedInsights  from "@vercel/speed-insights/astro"
+import robotsTxt from 'astro-robots-txt';
 
 export default defineConfig({
   site: "http://bbsshack.club",
@@ -43,5 +44,7 @@ export default defineConfig({
       gfm: true,
     }),
     sitemap(), // Add the sitemap integration here
+    robotsTxt(),
+
   ],
 });
