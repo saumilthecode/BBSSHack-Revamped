@@ -4,10 +4,12 @@ import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 import mdx from "@astrojs/mdx";
 import vercel from '@astrojs/vercel/static';
-import vercel from '@astrojs/vercel/serverless';
+// Only import one vercel adapter depending on your needs
+// import vercel from '@astrojs/vercel/serverless';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: "http://dev.bbsshack.club",
+  site: "http://bbsshack.club",
   output: 'server',
   adapter: vercel({
     webAnalytics: { enabled: true }
@@ -39,5 +41,6 @@ export default defineConfig({
     mdx({
       gfm: true,
     }),
+    sitemap(), // Add the sitemap integration here
   ],
 });
