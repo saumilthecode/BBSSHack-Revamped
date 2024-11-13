@@ -23,6 +23,9 @@ const { title, description, ogImage } = Astro.props as BaseLayoutProps;
       const savedTheme = localStorage.getItem('theme') || 'dark';
       document.documentElement.setAttribute('data-theme', savedTheme);
     </script>
+
+      <link rel="sitemap" href="sitemap-0.xml" />
+
   </head>
   <body class="bg-background text-foreground font-sans" data-theme="dark">
     <div class="flex flex-col min-h-screen">
