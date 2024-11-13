@@ -4,16 +4,14 @@ import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 import mdx from "@astrojs/mdx";
 import vercel from '@astrojs/vercel/static';
-// Only import one vercel adapter depending on your needs
 import vercel from '@astrojs/vercel/serverless';
 import sitemap from '@astrojs/sitemap';
-// import  SpeedInsights  from "@vercel/speed-insights/astro"
 import robotsTxt from 'astro-robots-txt';
 
 
 export default defineConfig({
   site: "http://bbsshack.club",
-  output: 'static',
+  output: 'server',
   adapter: vercel({
     webAnalytics: { enabled: true }
   }),
