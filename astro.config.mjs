@@ -5,7 +5,7 @@ import react from "@astrojs/react";
 import mdx from "@astrojs/mdx";
 import vercel from '@astrojs/vercel/static';
 // Only import one vercel adapter depending on your needs
-// import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel/serverless';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
