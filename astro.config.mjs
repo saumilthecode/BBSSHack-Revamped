@@ -10,6 +10,7 @@ import sitemap from '@astrojs/sitemap';
 // import  SpeedInsights  from "@vercel/speed-insights/astro"
 import robotsTxt from 'astro-robots-txt';
 
+
 export default defineConfig({
   site: "http://bbsshack.club",
   output: 'server',
