@@ -13,7 +13,7 @@ import robotsTxt from 'astro-robots-txt';
 
 export default defineConfig({
   site: "http://bbsshack.club",
-  output: 'server',
+  output: 'static',
   adapter: vercel({
     webAnalytics: { enabled: true }
   }),
