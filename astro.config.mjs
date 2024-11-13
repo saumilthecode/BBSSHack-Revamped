@@ -7,6 +7,7 @@ import vercel from '@astrojs/vercel/static';
 // Only import one vercel adapter depending on your needs
 import vercel from '@astrojs/vercel/serverless';
 import sitemap from '@astrojs/sitemap';
+import  SpeedInsights  from "@vercel/speed-insights/astro"
 
 export default defineConfig({
   site: "http://bbsshack.club",

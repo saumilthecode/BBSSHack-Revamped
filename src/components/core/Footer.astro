@@ -2,7 +2,7 @@
 import { Socials } from "@/config";
 import { getIconByName } from "@/components/core/Icons";
 import { Button } from "@/components/ui/button";
-
+import  SpeedInsights  from "@vercel/speed-insights/astro"
 // To pass the tailwindcss classes to the astro component
 const { class: className } = Astro.props;
 ---
@@ -51,4 +51,5 @@ const { class: className } = Astro.props;
       }
     </div>
   </div>
+  <SpeedInsights/>
 </footer>
