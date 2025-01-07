@@ -5,7 +5,7 @@ export const SITE = {
   author: "saumilthecode",
   desc: "Official Website of THE BBSS Hack Club",
   title: "BBSS Hack Club",
-  ogImage: "logo.webp",
+  ogImage: "/og-image.png",
   repo: "https://github.com/saumilthecode/BBSSHack-Revamped",
 };
 
