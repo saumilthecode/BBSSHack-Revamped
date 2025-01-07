@@ -3,7 +3,7 @@ import rehypeExternalLinks from "rehype-external-links";
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 import mdx from "@astrojs/mdx";
-import vercel from '@astrojs/vercel/static';
+// import vercel from '@astrojs/vercel/static';
 import vercel from '@astrojs/vercel/serverless';
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';

@@ -5,9 +5,9 @@ import DocsLayout from "@/layouts/DocsLayout.astro";
 import type { Heading, DocsEntry } from "@/lib/types";
 
 export const getStaticPaths = (async () => {
-  const docs: DocsEntry[] = await getCollection("docs", (data) => !data.data.draft);
+  const docs: DocsEntry[] = await getCollection("docs", (data: { data: { draft: boolean } }) => !data.data.draft);
   const headings: MarkdownHeading[][] = await Promise.all(
-    docs.map((entry) => entry.render().then(({ headings }) => headings))
+    docs.map((entry) => entry.render().then(({ headings }: { headings: MarkdownHeading[] }) => headings))
   );
 
   return docs.map((entry, index) => ({
@@ -23,6 +23,7 @@ const { entry, headings } = Astro.props as {
 
 const { Content } = await entry.render();
 const idAndData = { headings, ...entry.data };
+export const prerender = true;
 ---
 
 <DocsLayout {...idAndData}>
